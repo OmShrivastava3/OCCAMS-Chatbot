@@ -2,13 +2,18 @@
 This chatbot answers user queries about Occams Advisory, using information from their website.
 
 **2. Core Functionality**
+
 Website Scraping.
+
 Information Retrieval.
+
 Question Answering (using Google Gemini)
 Basic User Interface
 
 **3. Technical Architecture**
+
 Frontend: HTML, JavaScript
+
 Backend: Python (FastAPI)
 
 **4. Setup and Installation**
