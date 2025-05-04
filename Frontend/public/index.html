@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Occams Advisory Chatbot</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        #chat-container {
+            width: 500px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #response-area {
+            margin-top: 10px;
+            border: 1px solid #eee;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>Occams Advisory Chatbot</h1>
+        <input type="text" id="question-input" placeholder="Ask a question about Occams Advisory"
+            style="width: 100%; padding: 8px; margin-bottom: 10px;">
+        <button onclick="askQuestion()">Ask</button>
+        <div id="response-area"></div>
+    </div>
+
+    <script>
+        async function askQuestion() {
+            const responseArea = document.getElementById('response-area');
+            responseArea.innerText = "Testing...";
+            try {
+                const response = await fetch('http://localhost:8000/ask/', {
+                    method: 'POST', // Explicitly use POST
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: "test query" }), // Send a simple query
+                });
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+        
+                const data = await response.json();
+                responseArea.innerText = "Response from server: " + JSON.stringify(data);
+            } catch (error) {
+                responseArea.innerText = "Error: " + error.message;
+            }
+        }
+        </script>
+</body>
+</html>
